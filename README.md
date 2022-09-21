@@ -1,4 +1,4 @@
-# Face_recognition
+# face_recognition
 The code allows to recognize faces from a webcam
 
 You need to add a 'photos' folder and create folders with people's photos in it. One folder - one person!
