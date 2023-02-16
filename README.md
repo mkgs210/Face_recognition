@@ -1,21 +1,18 @@
-<<<<<<< HEAD
 # face_recognition
-The code allows to recognize faces from a webcam
+## v_0.0 
+The code of v_0.0 only allows you to recognize faces from a webcam
 
-You need to add a 'photos' folder and create folders with people's photos in it. One folder - one person!
-Only the folder names are important. Photo titles don't matter.
-=======
-# Facenet pytorch
-Отслеживание, распознавание лиц, а также подсчет времени присутствия на видео при помощи facenet_pytorch (MTCNN, InceptionResnetV1) и OpenCV
+## v_1.0
+The code of v_1.0 allows you to find and recognize faces in a video conference, as well as count the time of presence on the video using facenet_pytorch (MTCNN, InceptionResnetV1) and OpenCV.
 
-## Начало работы
+# Start
 
-1. Клонирование репозитория:
+1. Cloning a repository:
     
     ```bash
     git clone https://github.com/mkgs210/face_recognition
  
-1. Установка необходимых библиотек:
+1. Installing the required libraries:
 
     ```bash
     #facenet-pytorch==2.5.2
@@ -24,41 +21,40 @@ Only the folder names are important. Photo titles don't matter.
     #matplotlib==3.6.2
     pip install -r requirements.txt
 
-1. Запуск программы с параметрами по умолчанию:
+1. Running the program with default options:
 
     ```bash
     python main.py
 
-Передаваемые параметры:
+Passed parameters:
 
-  * `-h` или `--help` Выводится описание всех передаваемых параметров
-  * `-pcp` или `--photo_catalog_path` Путь до каталога с фотографиями. Внутри данного каталога должны находиться подписанные именами папки с фотографиями людей, которые будут присутствовать на видео (default=`photos`)
-  * `-ud` или `--update_data` Обновляет/Создает файл data.pt (вызывать при обновлении фотографий). В этом файле лежат закодированные лица людей (эмбеддинги) (default=`True`)
-  * `-dp` или `--data_path` Путь до каталога, где находится файл data.pt (default=` ` - папка где находится программа)
-  * `-wc` или `--web_cam` Считывать видео с веб-камеры. Файлы с подсчетом времени создаваться не будут (default=`False`)
-  * `-ivp` или `--input_video_path` Полный путь входного видео (default=`video.mp4`)
-  * `-dv` или `--do_video` True - создать видео, в котором будут отмечены все найденные и распознанные лица. False - не создавать (default=`False`)
-  * `-ovp` или `--output_video_path` Полный путь выходного видео с отмеченными лицами (default=`new_video.mp4`)
+  * `-h` or `--help` Displays description of all passed parameters
+  * `-pcp` or `--photo_catalog_path` The path to the photo folder. Inside this directory there should be signed folders with photos of people who will be present in the video (default=`photos`)
+  * `-ud` or `--update_data` Updates/Creates a file data.pt (call when updating photos). This file contains encoded faces of people (embeddings)(default=`True`)
+  * `-dp` or `--data_path` Path to the directory where the data.pt file is located (default=` ` - the folder where the program is located)
+  * `-wc` or `--web_cam` Reading video from a webcam. Time log files will not be created (default=`False`)
+  * `-ivp` or `--input_video_path` Full path to input video (default=`video.mp4`)
+  * `-dv` or `--do_video` True - create a video in which all found and recognized faces will be marked. False - do not create (default=`False`)
+  * `-ovp` or `--output_video_path` Full path of output video with tagged faces (default=`new_video.mp4`)
 
-Пример вызова программы с параметрами: `python main.py -pcp photos -ud True -ivp video.mp4 -dv True -ovp new_video.mp4`
+An example of calling a program with parameters: `python main.py -pcp photos -ud True -ivp video.mp4 -dv True -ovp new_video.mp4`
 
 
-## Выходные данные
+# Output data
 
-### *При первом запуске создастся папка `InceptionResnetV1_VGGFace2` и в нее будет загружена модель `InceptionResnetV1-vggface2`*
+### *At the first start, the `InceptionResnetV1_VGGFace2` folder will be created and the `InceptionResnetV1-vggface2` model will be loaded into it*
 
-В конце работы программы будет создано 4 файла:
-  * Time_{`--input_video_path`}.csv - файл с подсчитанным временем присутствия на видео
-  <img width="181" alt="image" src="https://user-images.githubusercontent.com/82940632/204598256-10575e3e-ad10-4419-a39f-6186298facfd.png">
+At the end of the program, 4 files will be created:
+  * Time_{`--input_video_path`}.csv - file with calculated presence time on video
+  <img width="250" alt="image" src="https://user-images.githubusercontent.com/78417431/219395573-36cabff4-cf1d-4e60-a235-b93d366f95ee.png">
 
-  * Time_drop0_{`--input_video_path`}.csv - файл с подсчитанным временем присутствия на видео (отброшены значения с временем равным нулю)
-  <img width="182" alt="image" src="https://user-images.githubusercontent.com/82940632/204598348-ec7662e5-0478-4a06-968f-aff6f9cb6b31.png">
+  * Time_drop0_{`--input_video_path`}.csv - file with calculated time of presence on the video (values with zero time are discarded)
+  <img width="250" alt="image" src="https://user-images.githubusercontent.com/78417431/219395965-8048e19a-c169-43d3-8bac-61687b8d2950.png">
 
-  * barh_{`--input_video_path`}.jpg - столбчатая диаграмма, на которой показано время присутствия каждого человека в процентах
-  <img width="831" alt="image" src="https://user-images.githubusercontent.com/82940632/204839742-2571ef99-7f2b-4abb-9963-90600a718bc2.png">
+  * barh_{`--input_video_path`}.jpg - a bar graph showing the percentage of time each person is present
+  <img width="1031" alt="image" src="https://user-images.githubusercontent.com/78417431/219396714-46e727a8-73d3-4308-b7ec-938b31cf7379.png">
 
-  * pie_{`--input_video_path`}.jpg - круговая диаграмма, на которой показано время присутствия участников видео относительно друг-друга
-  <img width="416" alt="image" src="https://user-images.githubusercontent.com/82940632/204839986-7876a7a5-2092-4955-b942-8de17a486718.png">
+  * pie_{`--input_video_path`}.jpg - a pie chart showing the presence time of video participants relative to each other
+  <img width="616" alt="image" src="https://user-images.githubusercontent.com/78417431/219397109-4f44d869-6e2c-40a0-86c6-8d57a02248f3.png">
 
-Также при `--do_video True` будет создано видео с названием `--output_video_path` (default=`new_video.mp4`)
->>>>>>> 00aa9a801dcc92d4eae00a08fadad07534622e7c
+Also, `--do_video True` will create a video called `--output_video_path` (default=`new_video.mp4`)
