@@ -4,7 +4,10 @@ The code of v_0.0 only allows you to recognize faces from a webcam
 
 ## v_1.0
 The code of v_1.0 allows you to find and recognize faces in a video conference, as well as count the time of presence on the video using facenet_pytorch (MTCNN, InceptionResnetV1) and OpenCV.
+
+## v_2.0
 + Added YoloV5_face for face recognition
+
 # Start
 
 1. Cloning a repository:
